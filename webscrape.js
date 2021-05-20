@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const webscrape = async() => {
     console.log("Web scraping");
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.goto("https://manage.devpost.com/challenges/12383-recess-hacks/dashboard/reports/activity", {"waitUntil":"domcontentloaded"});
     await page.type("#user_email", `${process.env.DEVPOST_EMAIL}`);
