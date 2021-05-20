@@ -6,8 +6,9 @@ const client = new Discord.Client({
     partials: ["USER"],
 });
 
-client.on("ready", () => {
+client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}!`);
+    await webscrape();
 });
 
 client.on("message", async (msg) => {
@@ -67,10 +68,7 @@ client.on("message", async (msg) => {
 });
 
 client.on("guildMemberAdd", async (member) => {
-    const channel = member.guild.channels.cache.get(
-        `${process.env.WELCOME_CHANNEL}`
-    );
-
+    const channel = member.guild.channels.cache.get(`${process.env.WELCOME_CHANNEL}`);
     const adminChannel = member.guild.channels.cache.get(`${process.env.ADMIN_CHANNEL}`);
     const foundUser = await findUser(member.user.tag);
     if (foundUser.status === "AUTHORIZED") {
@@ -82,9 +80,8 @@ client.on("guildMemberAdd", async (member) => {
         \n - school email: \`${foundUser.schoolEmail}\`
         `);
 
-        channel.send(
-            `Welcome to the Hackathon <@${member.user.id}>! You are automatically verified!`
-        );
+    channel.send(`Welcome to the Hackathon <@${member.user.id}>! You are automatically verified!`);
+    
     } else if (foundUser.status === "UNKNOWN") {
         adminChannel.send(`I found a user who has an email I am uncertain of
         \n - tag: \`${foundUser.tag} \`
