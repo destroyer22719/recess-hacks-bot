@@ -33,7 +33,7 @@ client.on("message", async (msg) => {
             \n - school email: \`${firstFind.schoolEmail}\`
             `);
 
-            msg.channel.send(`Hi there <@${member.user.id}>! I found your discord tag but need further verification on your devpost registration; our organizers will take it from here.`);
+            msg.channel.send(`Hi there <@${msg.member.user.id}>! I found your discord tag but need further verification on your devpost registration; our organizers will take it from here.`);
         } else {
             await webscrape();
             const finalFind = await findUser(msg.member.user.tag);
@@ -56,7 +56,7 @@ client.on("message", async (msg) => {
                 \n - school email: \`${firstFind.schoolEmail}\`
                 `);
 
-                msg.channel.send(`Hi there <@${member.user.id}>! I found your discord tag but need further verification on your devpost registration; our organizers will take it from here.`);
+                msg.channel.send(`Hi there <@${msg.member.user.id}>! I found your discord tag but need further verification on your devpost registration; our organizers will take it from here.`);
             } else {
                 msg.channel.send(
                     `Hi there <@${msg.member.user.id}> I can't seem to find you on our devpost (https://recesshacks.devpost.com). Make sure you property put your discord tag using the \`name#1234\` format when you sign up on our devpost and then try again. I am not perfect, if you have any issues with me please PM my creator: <@${process.env.CREATOR_ID}>`
