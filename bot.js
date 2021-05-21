@@ -8,6 +8,7 @@ const client = new Discord.Client({
 
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}!`);
+    client.user.setActivity("type !verify to automatically verify yourself");
     await webscrape();
 });
 
