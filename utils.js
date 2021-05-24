@@ -32,10 +32,7 @@ const findUser = async (discordTag) => {
         )
     );
 
-    const discordTags = participants.map(
-        (participant) =>
-            participant["What is your Discord name and tag? (DiscordUser#0001)"]
-    );
+    const discordTags = participants.map((participant) => participant["What is your Discord name and tag? (DiscordUser#0001)"]);
     const i = discordTags.indexOf(discordTag);
 
     if (
