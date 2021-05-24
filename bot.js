@@ -19,15 +19,15 @@ client.on("message", async (msg) => {
         const firstFind = await findUser(msg.member.user.tag);
         if (firstFind.status === "AUTHORIZED") {
             console.log(`Sucessfully verified ${msg.member.user.tag}`);
-            msg.member.roles.add(`${process.env.HACKER_ROLE}`);
-            adminChannel.send(`I verified a user!
+            // msg.member.roles.add(`${process.env.HACKER_ROLE}`);
+            adminChannel.send(`I found a potnetially valid a user!
             \n - tag: \`${firstFind.tag} \`
             \n - name: \`${firstFind.firstName} ${firstFind.lastName}\`
             \n - devpost email: \`${firstFind.devpostEmail}\`
             \n - school email: \`${firstFind.schoolEmail}\`
             `);
 
-            msg.channel.send(`Welcome to the Hackathon <@${msg.member.user.id}>! You are now verified!`);
+            msg.channel.send(`Welcome to the Hackathon <@${msg.member.user.id}>! We found your registration on devpost and things are looking good, our organizers will verify you!`);
 
         } else if (firstFind.status === "UNKNOWN") {
             console.log(`Found ${msg.member.user.tag} but email address uncertain of`);
@@ -87,15 +87,14 @@ client.on("guildMemberAdd", async (member) => {
     if (foundUser.status === "AUTHORIZED") {
         console.log(`Sucessfully verified ${member.user.tag}`);
         member.roles.add(`${process.env.HACKER_ROLE}`);
-        adminChannel.send(`I verified a user!
+        adminChannel.send(`I found a potentially valid user!
         \n - tag: \`${foundUser.tag} \`
         \n - name: \`${foundUser.firstName} ${foundUser.lastName}\`
         \n - devpost email: \`${foundUser.devpostEmail}\`
         \n - school email: \`${foundUser.schoolEmail}\`
         `);
 
-        channel.send(`Welcome to the Hackathon <@${member.user.id}>! You are automatically verified!`);
-    } else if (foundUser.status === "UNKNOWN") {
+        msg.channel.send(`Welcome to the Hackathon <@${member.user.id}>! We found your registration on devpost and things are looking good, our organizers will verify you!`);    } else if (foundUser.status === "UNKNOWN") {
         console.log(`Found ${member.user.tag} but email address uncertain of`);
 
         adminChannel.send(`I found a user who has an email I am uncertain of
