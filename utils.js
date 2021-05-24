@@ -2,7 +2,7 @@ const fs = require("fs");
 const csv = require("csvtojson");
 const path = require("path");
 
-const allowedEmails = /(student.tdsb.on.ca)/g;
+const allowedEmails = /(student.tdsb.on.ca|@gapps.yrdsb.ca)/g;
 const convertToJson = () => {
     return new Promise((resolve, reject) => {
         const file = fs.readdirSync(path.join(__dirname, "data", "csv"));
